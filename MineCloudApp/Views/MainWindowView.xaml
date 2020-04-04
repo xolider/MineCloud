@@ -1,0 +1,30 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:MineCloudApp.ViewModels;assembly=MineCloudApp"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MineCloudApp"
+        mc:Ignorable="d" Width="750" Height="468"
+        x:Class="MineCloudApp.Views.MainWindowView"
+        Icon="/Assets/avalonia-logo.ico"
+        CanResize="False"
+        Title="MineCloud"
+        Content="{Binding Content}"
+        WindowStartupLocation="CenterScreen">
+
+  <Design.DataContext>
+    <vm:MainWindowViewModel/>
+  </Design.DataContext>
+
+  <Window.Styles>
+    <Style Selector="TextBlock.h1">
+      <Setter Property="FontSize" Value="50"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+  </Window.Styles>
+
+  <Window.Background>
+    <ImageBrush Source="/Assets/background.png"/>
+  </Window.Background>
+
+</Window>
