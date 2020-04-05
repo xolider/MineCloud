@@ -1,5 +1,6 @@
 ﻿using ReactiveUI;
 using System.Reactive;
+using MineCloudApp.Lang;
 
 namespace MineCloudApp.ViewModels
 {
@@ -44,7 +45,7 @@ namespace MineCloudApp.ViewModels
 
         public void FileDownloaded()
         {
-            ButtonText = "Start";
+            ButtonText = LanguageController.CurrentLanguage.Start;
         }
     }
 }

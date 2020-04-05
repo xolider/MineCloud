@@ -5,6 +5,7 @@ using MineCloudApp.ViewModels;
 using MineCloudApp.Views;
 using MineCloudApp.Utils;
 using Avalonia.Controls;
+using MineCloudApp.Lang;
 
 namespace MineCloudApp
 {
@@ -20,6 +21,7 @@ namespace MineCloudApp
 
         public App()
         {
+            LanguageController.Init();
             FileHelper = new FileHelper();
             MineCloudNetwork = new MineCloudNetwork(FileHelper);
             ProcessHelper = new ProcessHelper(FileHelper);

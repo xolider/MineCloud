@@ -3,6 +3,7 @@ using ReactiveUI;
 using System.Reactive.Linq;
 using MineCloudApp.Models;
 using MineCloudApp.Utils;
+using MineCloudApp.Lang;
 
 namespace MineCloudApp.ViewModels
 {
@@ -46,18 +47,18 @@ namespace MineCloudApp.ViewModels
             switch(Model)
             {
                 case ViewModels.Main:
-                    Content = new MainViewModel { ButtonText = Network.LauncherExists() ? "Start" : "Download", InfoText = Network.LauncherExists() ? "Prêt" : "Téléchargement requis"};
+                    Content = new MainViewModel { ButtonText = Network.LauncherExists() ? LanguageController.CurrentLanguage.Start : LanguageController.CurrentLanguage.Download, InfoText = Network.LauncherExists() ?
+                        LanguageController.CurrentLanguage.Ready : LanguageController.CurrentLanguage.DownloadRequired};
 
                     Observable.Merge(((MainViewModel)Content).DownloadButton).Subscribe(delegate
                     {
                         if(!Network.LauncherExists())
                         {
-                            ((MainViewModel)Content).InfoText = "Downloading Launcher...";
+                            ((MainViewModel)Content).InfoText = LanguageController.CurrentLanguage.DownloadingLauncher;
                             Network.DownloadLauncher(((MainViewModel)Content).ProgressChanged, ((MainViewModel)Content).FileDownloaded);
                         }
                         else
                         {
-                            ((MainViewModel)Content).InfoText = "Starting Minecraft...";
                             ProcessHelper.startProcessAndWatch();
                         }
                     });

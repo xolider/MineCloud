@@ -3,8 +3,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:MineCloudApp.ViewModels;assembly=MineCloudApp"
+             xmlns:lang="clr-namespace:MineCloudApp.Lang;assembly=MineCloudApp"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MineCloudApp.Views.MainView">
+
+  <UserControl.Resources>
+    <lang:LanguageController x:Key="languageController"/>
+  </UserControl.Resources>
 
   <Design.DataContext>
     <vm:MainViewModel/>
