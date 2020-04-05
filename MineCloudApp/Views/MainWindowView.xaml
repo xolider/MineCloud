@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MineCloudApp"
         mc:Ignorable="d" Width="750" Height="468"
         x:Class="MineCloudApp.Views.MainWindowView"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/logo.ico"
         CanResize="False"
         Title="MineCloud"
         Content="{Binding Content}"

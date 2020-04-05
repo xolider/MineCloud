@@ -15,15 +15,15 @@
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
-      <RowDefinition Height="4*"/>
+      <RowDefinition Height="3*"/>
       <RowDefinition Height="Auto"/>
-      <RowDefinition Height="2*"/>
+      <RowDefinition Height="*"/>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="3*"/>
       <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
     <TextBlock Text="{Binding AppName}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Classes="h1"/>
-    <Grid Grid.Row="2" Grid.Column="1">
+    <Grid Grid.Row="3" Grid.Column="1">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
@@ -37,7 +37,7 @@
       <TextBlock Text="Pseudo" Grid.Row="1" Grid.Column="1"/>
       <TextBox Grid.Row="2" Grid.Column="1" Watermark="Entrez votre pseudo" Text="{Binding Pseudo}"/>
     </Grid>
-    <Grid Grid.Row="4" Grid.Column="1">
+    <Grid Grid.Row="5" Grid.Column="1">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
@@ -51,7 +51,7 @@
       <TextBlock Text="Mot de passe" Grid.Row="1" Grid.Column="1"/>
       <TextBox Grid.Row="2" Grid.Column="1" PasswordChar="&#8226;" Watermark="Entrez votre mot de passe" Text="{Binding Password}"/>
     </Grid>
-    <Grid Grid.Row="6" Grid.Column="1">
+    <Grid Grid.Row="7" Grid.Column="1">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="2*"/>
         <ColumnDefinition Width="*"/>
