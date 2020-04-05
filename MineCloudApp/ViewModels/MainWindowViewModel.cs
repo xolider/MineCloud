@@ -29,11 +29,16 @@ namespace MineCloudApp.ViewModels
 
         private async void ConnectUser(LoginModel Model)
         {
-            var IsCorrect = await Network.Login(Model.Pseudo, Model.Password);
-            if(IsCorrect)
+            var user = await Network.Login(Model.Pseudo, Model.Password);
+            if(user != null)
             {
                 ChangeContent(ViewModels.Main);
             }
+        }
+
+        private async void SignupUser(SignupModel Model)
+        {
+            
         }
 
         private void ChangeContent(ViewModels Model)
@@ -41,21 +46,18 @@ namespace MineCloudApp.ViewModels
             switch(Model)
             {
                 case ViewModels.Main:
-                    Content = new MainViewModel();
+                    Content = new MainViewModel { ButtonText = Network.LauncherExists() ? "Start" : "Download", InfoText = Network.LauncherExists() ? "Prêt" : "Téléchargement requis"};
 
-                    if(Network.LauncherExists())
-                    {
-                        ((MainViewModel)Content).ButtonText = "Start";
-                    }
-
-                    Observable.Merge(((MainViewModel)Content).DownloadButton).Take(2).Subscribe(delegate
+                    Observable.Merge(((MainViewModel)Content).DownloadButton).Subscribe(delegate
                     {
                         if(!Network.LauncherExists())
                         {
+                            ((MainViewModel)Content).InfoText = "Downloading Launcher...";
                             Network.DownloadLauncher(((MainViewModel)Content).ProgressChanged, ((MainViewModel)Content).FileDownloaded);
                         }
                         else
                         {
+                            ((MainViewModel)Content).InfoText = "Starting Minecraft...";
                             ProcessHelper.startProcessAndWatch();
                         }
                     });
@@ -63,7 +65,7 @@ namespace MineCloudApp.ViewModels
                 case ViewModels.Login:
                     Content = new LoginViewModel();
 
-                    Observable.Merge(((LoginViewModel)Content).ConnectButton, ((LoginViewModel)Content).SignupButton.Select(_ => (LoginModel)null)).Take(1).Subscribe(model =>
+                    Observable.Merge(((LoginViewModel)Content).ConnectButton, ((LoginViewModel)Content).SignupButton.Select(_ => (LoginModel)null)).Subscribe(model =>
                     {
                         if (model != null)
                         {
@@ -77,6 +79,18 @@ namespace MineCloudApp.ViewModels
                     break;
                 case ViewModels.Signup:
                     Content = new SignupViewModel();
+
+                    Observable.Merge(((SignupViewModel)Content).SignupButton, ((SignupViewModel)Content).ConnectButton.Select(_ => (SignupModel)null)).Subscribe(model =>
+                    {
+                        if(model != null)
+                        {
+                            SignupUser(model);
+                        }
+                        else
+                        {
+                            ChangeContent(ViewModels.Login);
+                        }
+                    });
                     break;
             }
         }

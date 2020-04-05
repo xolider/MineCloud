@@ -2,12 +2,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:MineCloudApp.ViewModels;assembly=MineCloudApp"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MineCloudApp.Views.MainView">
+
+  <Design.DataContext>
+    <vm:MainViewModel/>
+  </Design.DataContext>
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
@@ -15,6 +21,7 @@
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
     <Button Content="{Binding ButtonText}" Grid.Row="1" Grid.Column="1" Command="{Binding DownloadButton}"/>
-    <ProgressBar Grid.Row="2" Grid.Column="1" Value="{Binding ProgressValue}"/>
+    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding InfoText}" HorizontalAlignment="Center"/>
+    <ProgressBar Grid.Row="3" Grid.Column="1" Value="{Binding ProgressValue}"/>
   </Grid>
 </UserControl>

@@ -5,6 +5,7 @@ using System.IO;
 using MineCloudApp.ViewModels;
 using System.ComponentModel;
 using System.Diagnostics;
+using MineCloudApp.Models;
 
 namespace MineCloudApp.Utils
 {
@@ -17,14 +18,14 @@ namespace MineCloudApp.Utils
             this.FileHelper = fileHelper;
         }
 
-        public async Task<bool> Login(string login, string password)
+        public async Task<IUser> Login(string login, string password)
         {
-            var IsCorrect = false;
+            User user = null;
             await Task.Run(() =>
             {
-                IsCorrect = true;
+                user = new User();
             });
-            return IsCorrect;
+            return user;
         }
 
         public bool LauncherExists()
