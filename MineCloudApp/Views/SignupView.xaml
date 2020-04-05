@@ -28,7 +28,17 @@
       <RowDefinition Height="4*"/>
       <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
-    <TextBlock Text="{Binding AppName}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Classes="h1"/>
+    <Grid Grid.Row="1" Grid.Column="1">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="2*"/>
+        <ColumnDefinition Width="3*"/>
+      </Grid.ColumnDefinitions>
+      <Image Source="/Assets/MineCloud.png" Height="50" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10" Grid.Row="1" Grid.Column="0"/>
+      <TextBlock Text="{Binding AppName}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Classes="h1"/>
+    </Grid>
     <Grid Grid.Row="2" Grid.Column="1">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
