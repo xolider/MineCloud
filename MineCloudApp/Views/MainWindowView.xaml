@@ -41,8 +41,12 @@
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
-      <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right">
+      <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
+        <Image Source="/Assets/MineCloud.png" Height="20" Margin="5,0,0,0"/>
+      </StackPanel>
+      <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
         <Button Background="Transparent" Cursor="Hand" Command="{Binding MinimizeWindow}">
           <Image Source="/Assets/Minimize.png" Width="20" Height="20"/>
         </Button>

@@ -8,6 +8,6 @@ namespace MineCloudApp.ViewModels
 {
     public class ViewModelBase : ReactiveObject
     {
-        public string AppName => "MineCloud";
+        public string AppName => "ineCloud";
     }
 }
