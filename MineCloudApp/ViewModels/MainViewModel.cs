@@ -1,12 +1,15 @@
 ﻿using ReactiveUI;
 using System.Reactive;
 using MineCloudApp.Lang;
+using MineCloudApp.Models;
 
 namespace MineCloudApp.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
         public ReactiveCommand<Unit, Unit> DownloadButton { get; }
+
+        public ReactiveCommand<Unit, Unit> DisconnectButton { get; }
 
         private int _progressValue = 0;
 
@@ -32,10 +35,22 @@ namespace MineCloudApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _infoText, value);
         }
 
-        public MainViewModel()
+        private string _hello = LanguageController.CurrentLanguage.Hello;
+
+        public string Hello
         {
+            get => _hello;
+            set => this.RaiseAndSetIfChanged(ref _hello, value);
+        }
+
+        private IUser User;
+
+        public MainViewModel(object user)
+        {
+            this.User = user as IUser;
+            this.Hello += this.User.Username;
             DownloadButton = ReactiveCommand.Create(() => {  });
-            
+            DisconnectButton = ReactiveCommand.Create(() => { });
         }
 
         public void ProgressChanged(int Value)

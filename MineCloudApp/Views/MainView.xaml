@@ -16,8 +16,8 @@
   </Design.DataContext>
   <Grid>
     <Grid.RowDefinitions>
-      <RowDefinition Height="Auto"/>
       <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
@@ -25,6 +25,17 @@
       <ColumnDefinition Width="Auto"/>
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
+    <Grid Grid.Row="0" Grid.Column="1">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="Auto"/>
+      </Grid.ColumnDefinitions>
+      <TextBlock Text="{Binding Hello}" Grid.Row="0" Grid.Column="0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+      <Button Content="Déconnexion" Grid.Row="0" Margin="5" Grid.Column="1" Command="{Binding DisconnectButton}"/>
+    </Grid>
     <Button Content="{Binding ButtonText}" Grid.Row="1" Grid.Column="1" Command="{Binding DownloadButton}"/>
     <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding InfoText}" HorizontalAlignment="Center"/>
     <ProgressBar Grid.Row="3" Grid.Column="1" Value="{Binding ProgressValue}"/>

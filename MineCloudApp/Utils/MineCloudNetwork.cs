@@ -6,6 +6,7 @@ using MineCloudApp.ViewModels;
 using System.ComponentModel;
 using System.Diagnostics;
 using MineCloudApp.Models;
+using System.Text.Json;
 
 namespace MineCloudApp.Utils
 {
@@ -18,14 +19,39 @@ namespace MineCloudApp.Utils
             this.FileHelper = fileHelper;
         }
 
-        public async Task<IUser> Login(string login, string password)
+        public async Task<IUser> Login(string login, string password, bool save)
         {
             User user = null;
             await Task.Run(() =>
             {
-                user = new User();
+                user = JsonSerializer.Deserialize<User>("{\"Id\": 1, \"Username\": \"Xolider\", \"Email\": \"clem.vicart@gmail.com\"}");
             });
+            if(user != null)
+            {
+                FileHelper.SaveUser(user);
+            }
             return user;
+        }
+
+        public IUser SavedUser()
+        {
+            User user = null;
+            string filePath = Path.Combine(FileHelper.MineCloudFolder, "user.json");
+            if (File.Exists(filePath))
+            {
+                string json = File.ReadAllText(filePath);
+                user = JsonSerializer.Deserialize<User>(json);
+            }
+            return user;
+        }
+
+        public void DeleteSavedUser()
+        {
+            string filePath = Path.Combine(FileHelper.MineCloudFolder, "user.json");
+            if(File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
         }
 
         public bool LauncherExists()

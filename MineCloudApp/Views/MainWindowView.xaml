@@ -7,9 +7,8 @@
         mc:Ignorable="d" Width="750" Height="468"
         x:Class="MineCloudApp.Views.MainWindowView"
         Icon="/Assets/logo.ico"
-        CanResize="False"
         Title="MineCloud"
-        Content="{Binding Content}"
+        HasSystemDecorations="False"
         WindowStartupLocation="CenterScreen">
 
   <Design.DataContext>
@@ -26,5 +25,27 @@
   <Window.Background>
     <ImageBrush Source="/Assets/background.png"/>
   </Window.Background>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <Grid Grid.Row="0" Grid.Column="1" Background="{Binding BarColor}" x:Name="TopBar">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      <Button Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Background="Transparent" Cursor="Hand" Command="{Binding CloseWindow}">
+        <Image Source="/Assets/close.png" Width="20" Height="20"/>
+      </Button>
+    </Grid>
+    <ContentControl Content="{Binding Content}" Grid.Row="1" Grid.Column="1"/>
+  </Grid>
 
 </Window>

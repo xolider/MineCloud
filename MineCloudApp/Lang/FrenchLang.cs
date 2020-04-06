@@ -35,5 +35,9 @@ namespace MineCloudApp.Lang
         public string EnterPasswordConfirm => "Entrez la confirmation de votre mot de passe";
 
         public string DownloadingLauncher => "Téléchargement du launcher...";
+
+        public string Hello => "Bienvenue, ";
+
+        public string RememberMe => "Se souvenir de moi";
     }
 }

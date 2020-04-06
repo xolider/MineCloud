@@ -17,5 +17,7 @@
         public string EnterEmail { get; }
         public string EnterPasswordConfirm { get; }
         public string DownloadingLauncher { get; }
+        public string Hello { get; }
+        public string RememberMe { get; }
     }
 }

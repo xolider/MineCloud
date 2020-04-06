@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Text.Json;
 using System.IO;
+using MineCloudApp.Models;
 
 namespace MineCloudApp.Utils
 {
@@ -33,6 +34,13 @@ namespace MineCloudApp.Utils
                     LauncherFile = "Minecraft.dmg";
                     break;
             }
+        }
+
+        public void SaveUser(IUser user)
+        {
+            string json = JsonSerializer.Serialize(user);
+            string filePath = Path.Combine(MineCloudFolder, "user.json");
+            File.WriteAllText(filePath, json);
         }
     }
 }

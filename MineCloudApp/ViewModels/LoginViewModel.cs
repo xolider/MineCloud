@@ -21,6 +21,8 @@ namespace MineCloudApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _password, value);
         }
 
+        public bool RememberMeChecked { get; set; } = false;
+
         public ReactiveCommand<Unit, LoginModel> ConnectButton { get; }
 
         public ReactiveCommand<Unit, Unit> SignupButton { get; }

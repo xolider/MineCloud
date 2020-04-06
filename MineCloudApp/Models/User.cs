@@ -6,15 +6,10 @@ namespace MineCloudApp.Models
 {
     class User : IUser
     {
-        public string Username { get; private set; }
+        public string Username { get; set; }
 
-        public string Email { get; private set; }
+        public string Email { get; set; }
 
-        public int Id { get; private set; }
-
-        public User()
-        {
-
-        }
+        public int Id { get; set; }
     }
 }

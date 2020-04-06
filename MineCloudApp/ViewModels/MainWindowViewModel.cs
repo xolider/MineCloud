@@ -4,6 +4,8 @@ using System.Reactive.Linq;
 using MineCloudApp.Models;
 using MineCloudApp.Utils;
 using MineCloudApp.Lang;
+using Avalonia.Media;
+using System.Reactive;
 
 namespace MineCloudApp.ViewModels
 {
@@ -17,6 +19,10 @@ namespace MineCloudApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _content, value);
         }
 
+        public IBrush BarColor => new SolidColorBrush(Color.FromArgb(65, 0, 65, 255));
+
+        public ReactiveCommand<Unit, Unit> CloseWindow => ReactiveCommand.Create(delegate { App.Window.Close(); });
+
         private MineCloudNetwork Network;
         private ProcessHelper ProcessHelper;
 
@@ -25,15 +31,23 @@ namespace MineCloudApp.ViewModels
             this.Network = Network;
             this.ProcessHelper = processHelper;
 
-            ChangeContent(ViewModels.Login);
+            var savedUser = Network.SavedUser();
+            if(savedUser != null)
+            {
+                ChangeContent(ViewModels.Main, savedUser);
+            }
+            else
+            {
+                ChangeContent(ViewModels.Login);
+            }
         }
 
         private async void ConnectUser(LoginModel Model)
         {
-            var user = await Network.Login(Model.Pseudo, Model.Password);
+            var user = await Network.Login(Model.Pseudo, Model.Password, ((LoginViewModel)Content).RememberMeChecked);
             if(user != null)
             {
-                ChangeContent(ViewModels.Main);
+                ChangeContent(ViewModels.Main, user);
             }
         }
 
@@ -42,12 +56,12 @@ namespace MineCloudApp.ViewModels
             
         }
 
-        private void ChangeContent(ViewModels Model)
+        private void ChangeContent(ViewModels Model, object user = null)
         {
             switch(Model)
             {
                 case ViewModels.Main:
-                    Content = new MainViewModel { ButtonText = Network.LauncherExists() ? LanguageController.CurrentLanguage.Start : LanguageController.CurrentLanguage.Download, InfoText = Network.LauncherExists() ?
+                    Content = new MainViewModel(user) { ButtonText = Network.LauncherExists() ? LanguageController.CurrentLanguage.Start : LanguageController.CurrentLanguage.Download, InfoText = Network.LauncherExists() ?
                         LanguageController.CurrentLanguage.Ready : LanguageController.CurrentLanguage.DownloadRequired};
 
                     Observable.Merge(((MainViewModel)Content).DownloadButton).Subscribe(delegate
@@ -61,6 +75,11 @@ namespace MineCloudApp.ViewModels
                         {
                             ProcessHelper.startProcessAndWatch();
                         }
+                    });
+                    Observable.Merge(((MainViewModel)Content).DisconnectButton).Take(1).Subscribe(delegate
+                    {
+                        Network.DeleteSavedUser();
+                        ChangeContent(ViewModels.Login);
                     });
                     break;
                 case ViewModels.Login:
