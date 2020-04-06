@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.IO;
 using MineCloudApp.Models;
+using Avalonia;
+using Avalonia.Platform;
+using Avalonia.Media.Imaging;
 
 namespace MineCloudApp.Utils
 {
@@ -41,6 +44,12 @@ namespace MineCloudApp.Utils
             string json = JsonSerializer.Serialize(user);
             string filePath = Path.Combine(MineCloudFolder, "user.json");
             File.WriteAllText(filePath, json);
+        }
+
+        public static IBitmap ParseString(string path)
+        {
+            var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
+            return new Bitmap(assets.Open(new System.Uri(path)));
         }
     }
 }

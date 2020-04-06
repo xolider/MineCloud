@@ -5,7 +5,10 @@ using MineCloudApp.Models;
 using MineCloudApp.Utils;
 using MineCloudApp.Lang;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
 using System.Reactive;
+using System.Reflection;
+using System.IO;
 
 namespace MineCloudApp.ViewModels
 {
@@ -19,9 +22,10 @@ namespace MineCloudApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _content, value);
         }
 
-        public IBrush BarColor => new SolidColorBrush(Color.FromArgb(65, 0, 65, 255));
+        public IBrush BarColor => new SolidColorBrush(Avalonia.Media.Color.FromArgb(65, 0, 65, 255));
 
         public ReactiveCommand<Unit, Unit> CloseWindow => ReactiveCommand.Create(delegate { App.Window.Close(); });
+        public ReactiveCommand<Unit, Unit> MinimizeWindow => ReactiveCommand.Create(delegate { App.Window.WindowState = Avalonia.Controls.WindowState.Minimized; });
 
         private MineCloudNetwork Network;
         private ProcessHelper ProcessHelper;
@@ -61,8 +65,13 @@ namespace MineCloudApp.ViewModels
             switch(Model)
             {
                 case ViewModels.Main:
-                    Content = new MainViewModel(user) { ButtonText = Network.LauncherExists() ? LanguageController.CurrentLanguage.Start : LanguageController.CurrentLanguage.Download, InfoText = Network.LauncherExists() ?
-                        LanguageController.CurrentLanguage.Ready : LanguageController.CurrentLanguage.DownloadRequired};
+                    Content = new MainViewModel(user)
+                    {
+                        ButtonText = Network.LauncherExists() ? LanguageController.CurrentLanguage.Start : LanguageController.CurrentLanguage.Download,
+                        InfoText = Network.LauncherExists() ?
+                        LanguageController.CurrentLanguage.Ready : LanguageController.CurrentLanguage.DownloadRequired,
+                        ButtonImage = Network.LauncherExists() ? FileHelper.ParseString("avares://MineCloudApp/Assets/Minecraft.png") : FileHelper.ParseString("avares://MineCloudApp/Assets/download.png")
+                    };
 
                     Observable.Merge(((MainViewModel)Content).DownloadButton).Subscribe(delegate
                     {

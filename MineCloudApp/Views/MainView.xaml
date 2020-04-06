@@ -36,7 +36,12 @@
       <TextBlock Text="{Binding Hello}" Grid.Row="0" Grid.Column="0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right"/>
       <Button Content="Déconnexion" Grid.Row="0" Margin="5" Grid.Column="1" Command="{Binding DisconnectButton}"/>
     </Grid>
-    <Button Content="{Binding ButtonText}" Grid.Row="1" Grid.Column="1" Command="{Binding DownloadButton}"/>
+    <Button Grid.Row="1" Grid.Column="1" Command="{Binding DownloadButton}">
+      <StackPanel Orientation="Horizontal">
+        <Image Source="{Binding ButtonImage}" Height="44" Margin="5" VerticalAlignment="Center"/>
+        <TextBlock Text="{Binding ButtonText}" FontFamily="/Assets/Minecraft.ttf#Minecraft" VerticalAlignment="Center" Margin="5" FontSize="20"/>
+      </StackPanel>
+    </Button>
     <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding InfoText}" HorizontalAlignment="Center"/>
     <ProgressBar Grid.Row="3" Grid.Column="1" Value="{Binding ProgressValue}"/>
   </Grid>

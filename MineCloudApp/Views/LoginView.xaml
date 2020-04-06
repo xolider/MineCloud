@@ -22,10 +22,10 @@
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="3*"/>
       <RowDefinition Height="Auto"/>
-      <RowDefinition Height="*"/>
-      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="2*"/>
+      <RowDefinition Height="2*"/>
       <RowDefinition Height="3*"/>
-      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="3*"/>
     </Grid.RowDefinitions>
     <Grid Grid.Row="1" Grid.Column="1">
       <Grid.RowDefinitions>
@@ -38,7 +38,7 @@
       <Image Source="/Assets/MineCloud.png" Height="50" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10" Grid.Row="1" Grid.Column="0"/>
       <TextBlock Text="{Binding AppName}" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" Classes="h1"/>
     </Grid>
-    <Grid Grid.Row="3" Grid.Column="1">
+    <Grid Grid.Row="4" Grid.Column="1">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
@@ -57,9 +57,9 @@
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
-        <RowDefinition Height="*"/>
         <RowDefinition Height="Auto"/>
-        <RowDefinition Height="3*"/>
+        <RowDefinition Height="2*"/>
+        <RowDefinition Height="*"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*"/>
@@ -68,9 +68,9 @@
       </Grid.ColumnDefinitions>
       <TextBlock Text="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.Password, Mode=OneWay}" Grid.Row="1" Grid.Column="1"/>
       <TextBox Grid.Row="2" Grid.Column="1" PasswordChar="&#8226;" Watermark="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.EnterPassword, Mode=OneWay}" Text="{Binding Password}"/>
-      <CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding RememberMeChecked}" Content="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.RememberMe, Mode=OneWay}"/>
+      <CheckBox Grid.Row="4" VerticalAlignment="Bottom" Grid.Column="1" IsChecked="{Binding RememberMeChecked}" Content="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.RememberMe, Mode=OneWay}"/>
     </Grid>
-    <Grid Grid.Row="6" Grid.Column="1">
+    <Grid Grid.Row="6" Grid.Column="1" VerticalAlignment="Bottom">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="2*"/>
         <ColumnDefinition Width="*"/>
@@ -81,7 +81,7 @@
         <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
       <Button Content="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.Signup, Mode=OneWay}" Grid.Row="1" Grid.Column="1" Command="{Binding SignupButton}"/>
-      <Button Content="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.Signin, Mode=OneWay}" Grid.Row="1" Grid.Column="2" Command="{Binding ConnectButton}"/>
+      <Button Content="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.Signin, Mode=OneWay}" Grid.Row="1" Grid.Column="2" Foreground="White" Background="Green" Command="{Binding ConnectButton}"/>
     </Grid>
   </Grid>
 </UserControl>

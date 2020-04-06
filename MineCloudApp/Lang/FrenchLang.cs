@@ -6,9 +6,9 @@ namespace MineCloudApp.Lang
 {
     public class FrenchLang : ILanguage
     {
-        public string Start => "Démarrer";
+        public string Start => "Demarrer";
 
-        public string Download => "Télécharger";
+        public string Download => "Telecharger";
 
         public string Username => "Pseudo";
 

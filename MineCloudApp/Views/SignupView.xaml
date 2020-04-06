@@ -106,7 +106,7 @@
         <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
       <Button Content="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.Signin, Mode=OneWay}" Grid.Row="1" Grid.Column="1" Command="{Binding ConnectButton}"/>
-      <Button Content="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.Signup, Mode=OneWay}" Grid.Row="1" Grid.Column="2" Command="{Binding SignupButton}"/>
+      <Button Content="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.Signup, Mode=OneWay}" Grid.Row="1" Grid.Column="2" Foreground="White" Background="Green" Command="{Binding SignupButton}"/>
     </Grid>
   </Grid>
 </UserControl>

@@ -2,7 +2,9 @@
 using System.Reactive;
 using MineCloudApp.Lang;
 using MineCloudApp.Models;
-
+using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using MineCloudApp.Utils;
 namespace MineCloudApp.ViewModels
 {
     public class MainViewModel : ViewModelBase
@@ -24,7 +26,7 @@ namespace MineCloudApp.ViewModels
         public string ButtonText
         {
             get => _buttonText;
-            set => this.RaiseAndSetIfChanged(ref _buttonText, value);
+            set => this.RaiseAndSetIfChanged(ref _buttonText, value.ToUpper());
         }
 
         private string _infoText;
@@ -43,6 +45,13 @@ namespace MineCloudApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _hello, value);
         }
 
+        private IBitmap _buttonImage;
+        public IBitmap ButtonImage
+        {
+            get => _buttonImage;
+            set => this.RaiseAndSetIfChanged(ref _buttonImage, value);
+        }
+
         private IUser User;
 
         public MainViewModel(object user)
@@ -53,6 +62,11 @@ namespace MineCloudApp.ViewModels
             DisconnectButton = ReactiveCommand.Create(() => { });
         }
 
+        public MainViewModel()
+        {
+
+        }
+
         public void ProgressChanged(int Value)
         {
             ProgressValue = Value;
@@ -61,6 +75,9 @@ namespace MineCloudApp.ViewModels
         public void FileDownloaded()
         {
             ButtonText = LanguageController.CurrentLanguage.Start;
+            InfoText = LanguageController.CurrentLanguage.Ready;
+            ProgressValue = 0;
+            ButtonImage = FileHelper.ParseString("avares://MineCloudApp/Assets/Minecraft.png");
         }
     }
 }

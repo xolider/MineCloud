@@ -8,6 +8,7 @@
         x:Class="MineCloudApp.Views.MainWindowView"
         Icon="/Assets/logo.ico"
         Title="MineCloud"
+        CanResize="False"
         HasSystemDecorations="False"
         WindowStartupLocation="CenterScreen">
 
@@ -41,9 +42,14 @@
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
-      <Button Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Background="Transparent" Cursor="Hand" Command="{Binding CloseWindow}">
-        <Image Source="/Assets/close.png" Width="20" Height="20"/>
-      </Button>
+      <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right">
+        <Button Background="Transparent" Cursor="Hand" Command="{Binding MinimizeWindow}">
+          <Image Source="/Assets/Minimize.png" Width="20" Height="20"/>
+        </Button>
+        <Button Background="Transparent" Cursor="Hand" Command="{Binding CloseWindow}">
+          <Image Source="/Assets/close.png" Width="20" Height="20"/>
+        </Button>
+      </StackPanel>
     </Grid>
     <ContentControl Content="{Binding Content}" Grid.Row="1" Grid.Column="1"/>
   </Grid>

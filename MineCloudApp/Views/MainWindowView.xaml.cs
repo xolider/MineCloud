@@ -22,7 +22,7 @@ namespace MineCloudApp.Views
                 xOffset = (int) args.GetCurrentPoint(null).Position.X;
                 yOffset = (int)args.GetCurrentPoint(null).Position.Y;
             });
-            grid.PointerMoved += new System.EventHandler<Avalonia.Input.PointerEventArgs>((sender, args) =>
+            grid.PointerMoved += new System.EventHandler<PointerEventArgs>((sender, args) =>
             {
                 if (args.GetCurrentPoint(null).Properties.IsLeftButtonPressed)
                 {
