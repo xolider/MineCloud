@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MineCloudApp.Lang
+﻿namespace MineCloudApp.Lang
 {
     public class FrenchLang : ILanguage
     {

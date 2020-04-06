@@ -2,7 +2,6 @@
 using System.Reactive;
 using MineCloudApp.Lang;
 using MineCloudApp.Models;
-using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using MineCloudApp.Utils;
 namespace MineCloudApp.ViewModels

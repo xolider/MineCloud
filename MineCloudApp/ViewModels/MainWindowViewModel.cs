@@ -5,10 +5,7 @@ using MineCloudApp.Models;
 using MineCloudApp.Utils;
 using MineCloudApp.Lang;
 using Avalonia.Media;
-using Avalonia.Media.Imaging;
 using System.Reactive;
-using System.Reflection;
-using System.IO;
 
 namespace MineCloudApp.ViewModels
 {
