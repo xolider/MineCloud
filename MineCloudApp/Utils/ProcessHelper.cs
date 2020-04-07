@@ -14,7 +14,7 @@ namespace MineCloudApp.Utils
         {
             this.FileHelper = FileHelper;
         }
-        public async void startProcessAndWatch()
+        public async void startProcessAndWatch(Action<IList<string>> OnCompleted)
         {
             string path = "";
             switch(Environment.OSVersion.Platform)
@@ -28,10 +28,12 @@ namespace MineCloudApp.Utils
             }
             var process = Process.Start(path);
             App.Window.WindowState = Avalonia.Controls.WindowState.Minimized;
+            FileHelper.StartWatching();
             await Task.Run(() =>
             {
                 process.WaitForExit();
             });
+            OnCompleted(FileHelper.StopWatching());
             App.Window.WindowState = Avalonia.Controls.WindowState.Normal;
         }
     }
