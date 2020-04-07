@@ -79,7 +79,10 @@ namespace MineCloudApp.ViewModels
                         }
                         else
                         {
-                            ProcessHelper.startProcessAndWatch();
+                            ProcessHelper.startProcessAndWatch((list) =>
+                            {
+                                Network.ProcessSaving(list);
+                            });
                         }
                     });
                     Observable.Merge(((MainViewModel)Content).DisconnectButton).Take(1).Subscribe(delegate

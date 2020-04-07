@@ -38,8 +38,8 @@
     </Grid>
     <Button Grid.Row="1" Grid.Column="1" Command="{Binding DownloadButton}">
       <StackPanel Orientation="Horizontal">
-        <Image Source="{Binding ButtonImage}" Height="44" Margin="5" VerticalAlignment="Center"/>
-        <TextBlock Text="{Binding ButtonText}" FontFamily="/Assets/Minecraft.ttf#Minecraft" VerticalAlignment="Center" Margin="5" FontSize="20"/>
+        <Image Source="{Binding ButtonImage}" Height="44" Margin="0,0,5,0" VerticalAlignment="Center"/>
+        <TextBlock Text="{Binding ButtonText}" FontFamily="/Assets/ThePhamelo.otf#ThePhamelo" VerticalAlignment="Center" Margin="5,5,0,0" FontSize="25"/>
       </StackPanel>
     </Button>
     <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding InfoText}" HorizontalAlignment="Center"/>

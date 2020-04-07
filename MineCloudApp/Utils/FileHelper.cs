@@ -14,7 +14,11 @@ namespace MineCloudApp.Utils
 
         public string MineCloudFolder => Path.Combine(AppData, ".minecloud");
 
+        public string MinecraftSavesDirectory => Path.Combine(Path.Combine(AppData, ".minecraft"), "saves");
+
         public string LauncherFile { get; set; }
+
+        private MineCloudFileWatcher Watcher;
 
         public FileHelper()
         {
@@ -49,6 +53,18 @@ namespace MineCloudApp.Utils
         {
             var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
             return new Bitmap(assets.Open(new System.Uri(path)));
+        }
+
+        public void StartWatching()
+        {
+            Watcher = new MineCloudFileWatcher(MinecraftSavesDirectory);
+            Watcher.StartWatching();
+        }
+
+        public IList<string> StopWatching()
+        {
+            Watcher.StopWatching();
+            return Watcher.Files;
         }
     }
 }

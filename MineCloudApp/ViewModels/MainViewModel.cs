@@ -25,7 +25,7 @@ namespace MineCloudApp.ViewModels
         public string ButtonText
         {
             get => _buttonText;
-            set => this.RaiseAndSetIfChanged(ref _buttonText, value.ToUpper());
+            set => this.RaiseAndSetIfChanged(ref _buttonText, value);
         }
 
         private string _infoText;

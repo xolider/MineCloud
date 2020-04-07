@@ -2,6 +2,7 @@
 using System;
 using System.Net;
 using System.IO;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using MineCloudApp.Models;
@@ -78,6 +79,12 @@ namespace MineCloudApp.Utils
                     break;
             }
             finished();
+        }
+
+        public void ProcessSaving(IList<string> files)
+        {
+            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "files.txt");
+            File.AppendAllLines(filePath, files);
         }
     }
 }
