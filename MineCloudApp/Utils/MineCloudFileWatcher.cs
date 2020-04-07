@@ -23,13 +23,14 @@ namespace MineCloudApp.Utils
 
             watcher.Path = DirectoryPath;
 
-            watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
+            watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName;
 
             watcher.Filter = "";
 
             watcher.IncludeSubdirectories = true;
 
             watcher.Created += OnChanged;
+            watcher.Changed += OnChanged;
 
             watcher.EnableRaisingEvents = !DoStopWatching;
         }
@@ -41,7 +42,11 @@ namespace MineCloudApp.Utils
 
         private void OnChanged(object souce, FileSystemEventArgs e)
         {
-            Files.Add(e.FullPath);
+            var line = "Created: " + e.FullPath;
+            if(!Files.Contains(line) && !Directory.Exists(e.FullPath))
+            {
+                Files.Add(line);
+            }
         }
     }
 }
