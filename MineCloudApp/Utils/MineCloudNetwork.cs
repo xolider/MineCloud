@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using MineCloudApp.Models;
 using System.Text.Json;
+using System.IO.Compression;
 
 namespace MineCloudApp.Utils
 {
@@ -81,10 +82,21 @@ namespace MineCloudApp.Utils
             finished();
         }
 
-        public void ProcessSaving(IList<string> files)
+        public async Task ProcessSaving(IList<string> files, Action<int> progressChanged)
         {
-            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "files.txt");
-            File.AppendAllLines(filePath, files);
+            foreach(string path in files)
+            {
+                var destPath = Path.Combine(FileHelper.MineCloudTemp, path.Replace(FileHelper.MinecraftSavesDirectory, "").Substring(1)) + ".zip";
+                ZipFile.CreateFromDirectory(path, destPath, CompressionLevel.Optimal, true);
+                await SendFile(destPath, progressChanged);
+            }
+        }
+
+        private async Task SendFile(string filePath, Action<int> progressChanged)
+        {
+            var webClient = new WebClient();
+            webClient.UploadProgressChanged += new UploadProgressChangedEventHandler((sender, e) => progressChanged(e.ProgressPercentage));
+            //await webClient.UploadFileTaskAsync("", "");
         }
     }
 }

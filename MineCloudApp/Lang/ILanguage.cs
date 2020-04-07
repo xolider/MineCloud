@@ -19,5 +19,6 @@
         public string DownloadingLauncher { get; }
         public string Hello { get; }
         public string RememberMe { get; }
+        public string Uploading { get; }
     }
 }

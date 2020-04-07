@@ -35,5 +35,7 @@
         public string Hello => "Welcome, ";
 
         public string RememberMe => "Remember me";
+
+        public string Uploading => "Uploading new saves...";
     }
 }

@@ -17,6 +17,8 @@ namespace MineCloudApp.Utils
 
         public string MinecraftSavesDirectory => Path.Combine(Path.Combine(AppData, ".minecraft"), "saves");
 
+        public string MineCloudTemp => Path.Combine(MineCloudFolder, "temp");
+
         public string LauncherFile { get; set; }
 
         private MineCloudFileWatcher Watcher;
@@ -26,6 +28,10 @@ namespace MineCloudApp.Utils
             if(!Directory.Exists(MineCloudFolder))
             {
                 Directory.CreateDirectory(MineCloudFolder);
+            }
+            if(!Directory.Exists(MineCloudTemp))
+            {
+                Directory.CreateDirectory(MineCloudTemp);
             }
             switch (Environment.OSVersion.Platform)
             {

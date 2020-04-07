@@ -79,9 +79,11 @@ namespace MineCloudApp.ViewModels
                         }
                         else
                         {
-                            ProcessHelper.startProcessAndWatch((list) =>
+                            ProcessHelper.startProcessAndWatch(async (list) =>
                             {
-                                Network.ProcessSaving(list);
+                                ((MainViewModel)Content).InfoText = LanguageController.CurrentLanguage.Uploading;
+                                await Network.ProcessSaving(list, ((MainViewModel)Content).ProgressChanged);
+                                ((MainViewModel)Content).InfoText = LanguageController.CurrentLanguage.Ready;
                             });
                         }
                     });

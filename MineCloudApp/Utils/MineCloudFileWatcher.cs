@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace MineCloudApp.Utils
 {
@@ -27,7 +26,7 @@ namespace MineCloudApp.Utils
 
             watcher.Filter = "";
 
-            watcher.IncludeSubdirectories = true;
+            watcher.IncludeSubdirectories = false;
 
             watcher.Created += OnChanged;
             watcher.Changed += OnChanged;
@@ -42,8 +41,8 @@ namespace MineCloudApp.Utils
 
         private void OnChanged(object souce, FileSystemEventArgs e)
         {
-            var line = "Created: " + e.FullPath;
-            if(!Files.Contains(line) && !Directory.Exists(e.FullPath))
+            var line = e.FullPath;
+            if(!Files.Contains(line))
             {
                 Files.Add(line);
             }
