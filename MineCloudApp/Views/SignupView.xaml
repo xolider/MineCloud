@@ -20,24 +20,22 @@
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="3*"/>
-      <RowDefinition Height="2*"/>
-      <RowDefinition Height="2*"/>
-      <RowDefinition Height="2*"/>
       <RowDefinition Height="4*"/>
-      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
-    <Grid Grid.Row="1" Grid.Column="1">
+    <Grid Grid.Row="0" Grid.Column="1">
       <Grid.RowDefinitions>
         <RowDefinition Height="*"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="4*"/>
-        <ColumnDefinition Width="5*"/>
+        <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
-      <Image Source="/Assets/MineCloud.png" Height="50" Margin="0,0,0,20" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="0"/>
-      <TextBlock Text="{Binding AppName}" FontFamily="/Assets/ThePhamelo.otf#ThePhamelo" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Classes="h1"/>
+      <Image Source="/Assets/Banner.png" Margin="0,0,0,27" Height="120" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
     </Grid>
     <Grid Grid.Row="2" Grid.Column="1">
       <Grid.RowDefinitions>
@@ -50,7 +48,7 @@
         <ColumnDefinition Width="*"/>
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
-      <TextBlock Text="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.Email, Mode=OneWay}" Grid.Row="1" Grid.Column="1"/>
+      <TextBlock Text="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.Email, Mode=OneWay}" Foreground="White" Grid.Row="1" Grid.Column="1"/>
       <TextBox Grid.Row="2" Grid.Column="1" Watermark="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.EnterEmail, Mode=OneWay}" Text="{Binding Email}"/>
     </Grid>
     <Grid Grid.Row="3" Grid.Column="1">
@@ -64,7 +62,7 @@
         <ColumnDefinition Width="*"/>
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
-      <TextBlock Text="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.Username, Mode=OneWay}" Grid.Row="1" Grid.Column="1"/>
+      <TextBlock Text="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.Username, Mode=OneWay}" Foreground="White" Grid.Row="1" Grid.Column="1"/>
       <TextBox Grid.Row="2" Grid.Column="1" Watermark="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.EnterUsername, Mode=OneWay}" Text="{Binding Pseudo}"/>
     </Grid>
     <Grid Grid.Row="4" Grid.Column="1">
@@ -78,7 +76,7 @@
         <ColumnDefinition Width="*"/>
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
-      <TextBlock Text="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.Password, Mode=OneWay}" Grid.Row="1" Grid.Column="1"/>
+      <TextBlock Text="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.Password, Mode=OneWay}" Foreground="White" Grid.Row="1" Grid.Column="1"/>
       <TextBox Grid.Row="2" Grid.Column="1" PasswordChar="&#8226;" Watermark="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.EnterPassword, Mode=OneWay}" Text="{Binding Password}"/>
     </Grid>
     <Grid Grid.Row="5" Grid.Column="1">
@@ -92,10 +90,10 @@
         <ColumnDefinition Width="*"/>
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
-      <TextBlock Text="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.PasswordConfirm, Mode=OneWay}" Grid.Row="1" Grid.Column="1"/>
+      <TextBlock Text="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.PasswordConfirm, Mode=OneWay}" Foreground="White" Grid.Row="1" Grid.Column="1"/>
       <TextBox Grid.Row="2" Grid.Column="1" PasswordChar="&#8226;" Watermark="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.EnterPasswordConfirm, Mode=OneWay}" Text="{Binding PasswordConfirm}"/>
     </Grid>
-    <Grid Grid.Row="6" Grid.Column="1">
+    <Grid Grid.Row="6" Grid.Column="1" VerticalAlignment="Bottom">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="2*"/>
         <ColumnDefinition Width="*"/>

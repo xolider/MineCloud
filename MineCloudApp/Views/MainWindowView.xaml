@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MineCloudApp"
-        mc:Ignorable="d" Width="750" Height="468"
+        mc:Ignorable="d" Width="1066" Height="600"
         x:Class="MineCloudApp.Views.MainWindowView"
         Icon="/Assets/logo.ico"
         Title="MineCloud"
@@ -18,7 +18,7 @@
 
   <Window.Styles>
     <Style Selector="TextBlock.h1">
-      <Setter Property="FontSize" Value="50"/>
+      <Setter Property="FontSize" Value="90"/>
       <Setter Property="FontWeight" Value="Bold"/>
     </Style>
   </Window.Styles>

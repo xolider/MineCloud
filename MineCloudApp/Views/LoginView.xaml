@@ -19,26 +19,23 @@
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
-      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="7*"/>
       <RowDefinition Height="3*"/>
-      <RowDefinition Height="Auto"/>
       <RowDefinition Height="2*"/>
-      <RowDefinition Height="2*"/>
-      <RowDefinition Height="3*"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="4*"/>
       <RowDefinition Height="3*"/>
     </Grid.RowDefinitions>
-    <Grid Grid.Row="1" Grid.Column="1">
+    <Grid Grid.Row="0" Grid.Column="1">
       <Grid.RowDefinitions>
         <RowDefinition Height="*"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="4*"/>
-        <ColumnDefinition Width="5*"/>
+        <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
-      <Image Source="/Assets/MineCloud.png" Height="50" HorizontalAlignment="Right" Margin="0,0,0,20" Grid.Row="1" Grid.Column="0"/>
-      <TextBlock Text="{Binding AppName}" FontFamily="/Assets/ThePhamelo.otf#ThePhamelo" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Classes="h1"/>
+      <Image Source="/Assets/Banner.png" Height="120" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
     </Grid>
-    <Grid Grid.Row="4" Grid.Column="1">
+    <Grid Grid.Row="2" Grid.Column="1">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
@@ -49,10 +46,10 @@
         <ColumnDefinition Width="*"/>
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
-      <TextBlock Text="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.Username, Mode=OneWay}" Grid.Row="1" Grid.Column="1"/>
+      <TextBlock Text="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.Username, Mode=OneWay}" Foreground="White" Grid.Row="1" Grid.Column="1"/>
       <TextBox Grid.Row="2" Grid.Column="1" Watermark="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.EnterUsername, Mode=OneWay}" Text="{Binding Pseudo}"/>
     </Grid>
-    <Grid Grid.Row="5" Grid.Column="1">
+    <Grid Grid.Row="4" Grid.Column="1">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
@@ -66,11 +63,11 @@
         <ColumnDefinition Width="*"/>
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
-      <TextBlock Text="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.Password, Mode=OneWay}" Grid.Row="1" Grid.Column="1"/>
+      <TextBlock Text="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.Password, Mode=OneWay}" Foreground="White" Grid.Row="1" Grid.Column="1"/>
       <TextBox Grid.Row="2" Grid.Column="1" PasswordChar="&#8226;" Watermark="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.EnterPassword, Mode=OneWay}" Text="{Binding Password}"/>
-      <CheckBox Grid.Row="4" VerticalAlignment="Bottom" Grid.Column="1" IsChecked="{Binding RememberMeChecked}" Content="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.RememberMe, Mode=OneWay}"/>
+      <CheckBox Foreground="White" Grid.Row="4" VerticalAlignment="Bottom" Grid.Column="1" IsChecked="{Binding RememberMeChecked}" Content="{Binding Source={StaticResource languageController}, Path=CurrentLanguage.RememberMe, Mode=OneWay}"/>
     </Grid>
-    <Grid Grid.Row="6" Grid.Column="1" VerticalAlignment="Bottom">
+    <Grid Grid.Row="5" Grid.Column="1" VerticalAlignment="Bottom">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="2*"/>
         <ColumnDefinition Width="*"/>
