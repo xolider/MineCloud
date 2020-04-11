@@ -19,7 +19,7 @@ namespace MineCloudApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _content, value);
         }
 
-        public IBrush BarColor => new SolidColorBrush(Avalonia.Media.Color.FromArgb(65, 0, 65, 255));
+        public IBrush BarColor => new SolidColorBrush(Avalonia.Media.Color.FromArgb(75, 0, 65, 255));
 
         public ReactiveCommand<Unit, Unit> CloseWindow => ReactiveCommand.Create(delegate { App.Window.Close(); });
         public ReactiveCommand<Unit, Unit> MinimizeWindow => ReactiveCommand.Create(delegate { App.Window.WindowState = Avalonia.Controls.WindowState.Minimized; });
@@ -58,6 +58,11 @@ namespace MineCloudApp.ViewModels
             {
                 ChangeContent(ViewModels.Login);
             }
+        }
+
+        public MainWindowViewModel()
+        {
+
         }
 
         private async void ConnectUser(LoginModel Model)

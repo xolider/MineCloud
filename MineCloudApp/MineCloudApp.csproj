@@ -2,7 +2,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <ApplicationIcon>logo.ico</ApplicationIcon>
+    <ApplicationIcon>Assets/logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="**\*.xaml.cs">
@@ -17,5 +17,10 @@
     <PackageReference Include="Avalonia" Version="0.9.7" />
     <PackageReference Include="Avalonia.Desktop" Version="0.9.7" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.9.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Assets\logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
