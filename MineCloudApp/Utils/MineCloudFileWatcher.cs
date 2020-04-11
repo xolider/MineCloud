@@ -42,7 +42,7 @@ namespace MineCloudApp.Utils
         private void OnChanged(object souce, FileSystemEventArgs e)
         {
             var line = e.FullPath;
-            if(!Files.Contains(line))
+            if (!Files.Contains(line))
             {
                 Files.Add(line);
             }

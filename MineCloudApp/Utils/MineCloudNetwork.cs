@@ -82,24 +82,38 @@ namespace MineCloudApp.Utils
             finished();
         }
 
-        public async Task ProcessSaving(IList<string> files, Action<int> progressChanged)
+        public async Task ProcessSaving(IList<string> files)
         {
+            
             foreach(string path in files)
             {
-                var destPath = Path.Combine(FileHelper.MineCloudTemp, path.Replace(FileHelper.MinecraftSavesDirectory, "").Substring(1)) + ".zip";
-                ZipFile.CreateFromDirectory(path, destPath, CompressionLevel.Optimal, true);
-                await SendFile(destPath, progressChanged);
-                File.Delete(destPath);
+                if(Directory.Exists(path))
+                {
+                    var destPath = Path.Combine(FileHelper.MineCloudTemp, path.Replace(FileHelper.MinecraftSavesDirectory, "").Substring(1)) + ".zip";
+                    ZipFile.CreateFromDirectory(path, destPath, CompressionLevel.Optimal, true);
+                    await SendFile(destPath);
+                    File.Delete(destPath);
+                }
+                else
+                {
+                    await SendDeleteFile(path.Replace(FileHelper.MinecraftSavesDirectory, "").Substring(1) + ".zip");
+                }
             }
+            
         }
 
-        private async Task SendFile(string filePath, Action<int> progressChanged)
+        private async Task SendFile(string filePath)
         {
             WebClient client = new WebClient();
             client.Headers.Add("Content-Type", "binary/octet-stream");
 
-            client.UploadProgressChanged += new UploadProgressChangedEventHandler((sender, e) => progressChanged(e.ProgressPercentage));
             await client.UploadFileTaskAsync("https://minecloud.fr/upload.php?user=" + User.CurrentUser.Id, "POST", filePath);
+        }
+
+        private async Task SendDeleteFile(string filePath)
+        {
+            WebClient client = new WebClient();
+            await client.DownloadStringTaskAsync("https://minecloud.fr/delete.php?user=" + User.CurrentUser.Id + "&file=" + WebUtility.UrlEncode(filePath));
         }
     }
 }
