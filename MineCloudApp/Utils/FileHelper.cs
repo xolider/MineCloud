@@ -11,7 +11,8 @@ namespace MineCloudApp.Utils
 {
     public class FileHelper
     {
-        private string AppData => Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        private string AppData => Environment.OSVersion.Platform == (PlatformID.Unix | PlatformID.MacOSX) ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "..")
+            : Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
         public string MineCloudFolder => Path.Combine(AppData, ".minecloud");
 
