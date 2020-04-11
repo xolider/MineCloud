@@ -51,19 +51,11 @@ namespace MineCloudApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _buttonImage, value);
         }
 
-        private IUser User;
-
-        public MainViewModel(object user)
-        {
-            this.User = user as IUser;
-            this.Hello += this.User.Username;
-            DownloadButton = ReactiveCommand.Create(() => {  });
-            DisconnectButton = ReactiveCommand.Create(() => { });
-        }
-
         public MainViewModel()
         {
-
+            this.Hello += User.CurrentUser.Username;
+            DownloadButton = ReactiveCommand.Create(() => {  });
+            DisconnectButton = ReactiveCommand.Create(() => { });
         }
 
         public void ProgressChanged(int Value)

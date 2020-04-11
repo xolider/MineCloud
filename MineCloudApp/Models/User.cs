@@ -7,5 +7,7 @@
         public string Email { get; set; }
 
         public int Id { get; set; }
+
+        public static IUser CurrentUser { get; set; }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System;
 using System.Net;
-using System.Net.Sockets;
 using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +8,6 @@ using System.Diagnostics;
 using MineCloudApp.Models;
 using System.Text.Json;
 using System.IO.Compression;
-using System.Text;
 
 namespace MineCloudApp.Utils
 {
@@ -90,19 +88,16 @@ namespace MineCloudApp.Utils
             {
                 var destPath = Path.Combine(FileHelper.MineCloudTemp, path.Replace(FileHelper.MinecraftSavesDirectory, "").Substring(1)) + ".zip";
                 ZipFile.CreateFromDirectory(path, destPath, CompressionLevel.Optimal, true);
-                //await SendFile(destPath);
-                File.Delete(destPath);
+                await SendFile(destPath);
             }
         }
 
         private async Task SendFile(string filePath)
         {
-            Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            client.Connect(Dns.GetHostAddresses("minecloud.fr"), 21000);
-            byte[] fileByte = File.ReadAllBytes(filePath);
-            await client.SendAsync(Encoding.ASCII.GetBytes(filePath.Replace(FileHelper.MineCloudTemp, "").Substring(1)), SocketFlags.None);
-            await client.SendAsync(fileByte, SocketFlags.None);
-            client.Close();
+            WebClient client = new WebClient();
+            client.Headers.Add("Content-Type", "binary/octet-stream");
+
+            await client.UploadFileTaskAsync("https://minecloud.fr/upload.php?user=" + User.CurrentUser.Id, "POST", filePath);
         }
     }
 }

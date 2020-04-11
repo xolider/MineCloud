@@ -35,7 +35,8 @@ namespace MineCloudApp.ViewModels
             var savedUser = Network.SavedUser();
             if(savedUser != null)
             {
-                ChangeContent(ViewModels.Main, savedUser);
+                User.CurrentUser = savedUser;
+                ChangeContent(ViewModels.Main);
             }
             else
             {
@@ -48,7 +49,8 @@ namespace MineCloudApp.ViewModels
             var user = await Network.Login(Model.Pseudo, Model.Password, ((LoginViewModel)Content).RememberMeChecked);
             if(user != null)
             {
-                ChangeContent(ViewModels.Main, user);
+                User.CurrentUser = user;
+                ChangeContent(ViewModels.Main);
             }
         }
 
@@ -57,12 +59,12 @@ namespace MineCloudApp.ViewModels
             
         }
 
-        private void ChangeContent(ViewModels Model, object user = null)
+        private void ChangeContent(ViewModels Model)
         {
             switch(Model)
             {
                 case ViewModels.Main:
-                    Content = new MainViewModel(user)
+                    Content = new MainViewModel()
                     {
                         ButtonText = Network.LauncherExists() ? LanguageController.CurrentLanguage.Start : LanguageController.CurrentLanguage.Download,
                         InfoText = Network.LauncherExists() ?
@@ -89,6 +91,7 @@ namespace MineCloudApp.ViewModels
                     });
                     Observable.Merge(((MainViewModel)Content).DisconnectButton).Take(1).Subscribe(delegate
                     {
+                        User.CurrentUser = null;
                         Network.DeleteSavedUser();
                         ChangeContent(ViewModels.Login);
                     });
