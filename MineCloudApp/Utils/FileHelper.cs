@@ -11,7 +11,7 @@ namespace MineCloudApp.Utils
 {
     public class FileHelper
     {
-        private string AppData => Environment.OSVersion.Platform == PlatformID.Unix ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "..")
+        private string AppData => Environment.OSVersion.Platform == PlatformID.Unix ? Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)
             : Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
         public string MineCloudFolder => Path.Combine(AppData, ".minecloud");
@@ -33,6 +33,10 @@ namespace MineCloudApp.Utils
             if(!Directory.Exists(MineCloudTemp))
             {
                 Directory.CreateDirectory(MineCloudTemp);
+            }
+            if(!Directory.Exists(MinecraftSavesDirectory))
+            {
+                Directory.CreateDirectory(MinecraftSavesDirectory);
             }
             switch (Environment.OSVersion.Platform)
             {
