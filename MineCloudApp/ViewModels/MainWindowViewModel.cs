@@ -24,6 +24,22 @@ namespace MineCloudApp.ViewModels
         public ReactiveCommand<Unit, Unit> CloseWindow => ReactiveCommand.Create(delegate { App.Window.Close(); });
         public ReactiveCommand<Unit, Unit> MinimizeWindow => ReactiveCommand.Create(delegate { App.Window.WindowState = Avalonia.Controls.WindowState.Minimized; });
 
+        private int _progressValue = 0;
+
+        public int ProgressValue
+        {
+            get => _progressValue;
+            set => this.RaiseAndSetIfChanged(ref _progressValue, value);
+        }
+
+        private bool _progressIndeterminate = false;
+
+        public bool ProgressIndeterminate
+        {
+            get => _progressIndeterminate;
+            set => this.RaiseAndSetIfChanged(ref _progressIndeterminate, value);
+        }
+
         private MineCloudNetwork Network;
         private ProcessHelper ProcessHelper;
 
@@ -52,6 +68,11 @@ namespace MineCloudApp.ViewModels
                 User.CurrentUser = user;
                 ChangeContent(ViewModels.Main);
             }
+            else
+            {
+                ((LoginViewModel)Content).SetConnectButton(true);
+            }
+            ProgressIndeterminate = false;
         }
 
         private async void SignupUser(SignupModel Model)
@@ -77,7 +98,7 @@ namespace MineCloudApp.ViewModels
                         if(!Network.LauncherExists())
                         {
                             ((MainViewModel)Content).InfoText = LanguageController.CurrentLanguage.DownloadingLauncher;
-                            Network.DownloadLauncher(((MainViewModel)Content).ProgressChanged, ((MainViewModel)Content).FileDownloaded);
+                            Network.DownloadLauncher((value) => ProgressValue = value, ((MainViewModel)Content).FileDownloaded);
                         }
                         else
                         {
@@ -103,6 +124,8 @@ namespace MineCloudApp.ViewModels
                     {
                         if (model != null)
                         {
+                            ((LoginViewModel)Content).SetConnectButton(false);
+                            ProgressIndeterminate = true;
                             ConnectUser(model);
                         }
                         else

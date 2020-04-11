@@ -12,14 +12,6 @@ namespace MineCloudApp.ViewModels
 
         public ReactiveCommand<Unit, Unit> DisconnectButton { get; }
 
-        private int _progressValue = 0;
-
-        public int ProgressValue
-        {
-            get => _progressValue;
-            set => this.RaiseAndSetIfChanged(ref _progressValue, value);
-        }
-
         private string _buttonText;
 
         public string ButtonText
@@ -58,16 +50,10 @@ namespace MineCloudApp.ViewModels
             DisconnectButton = ReactiveCommand.Create(() => { });
         }
 
-        public void ProgressChanged(int Value)
-        {
-            ProgressValue = Value;
-        }
-
         public void FileDownloaded()
         {
             ButtonText = LanguageController.CurrentLanguage.Start;
             InfoText = LanguageController.CurrentLanguage.Ready;
-            ProgressValue = 0;
             ButtonImage = FileHelper.ParseString("avares://MineCloudApp/Assets/Minecraft.png");
         }
     }

@@ -23,16 +23,28 @@ namespace MineCloudApp.ViewModels
 
         public bool RememberMeChecked { get; set; } = false;
 
-        public ReactiveCommand<Unit, LoginModel> ConnectButton { get; }
+        public ReactiveCommand<Unit, LoginModel> ConnectButton { get; private set; }
 
         public ReactiveCommand<Unit, Unit> SignupButton { get; }
 
         public LoginViewModel()
         {
-            var ConnectEnabled = this.WhenAnyValue(x => x.Pseudo, x => x.Password, (login, pass) => !string.IsNullOrWhiteSpace(login) && !string.IsNullOrWhiteSpace(pass));
-
-            ConnectButton = ReactiveCommand.Create(() => new LoginModel { Pseudo = Pseudo, Password = Password }, ConnectEnabled);
+            SetConnectButton(true);
             SignupButton = ReactiveCommand.Create(() => {  });
+        }
+
+        public void SetConnectButton(bool enabled)
+        {
+            if(enabled)
+            {
+                var ConnectEnabled = this.WhenAnyValue(x => x.Pseudo, x => x.Password, (login, pass) => !string.IsNullOrWhiteSpace(login) && !string.IsNullOrWhiteSpace(pass));
+
+                ConnectButton = ReactiveCommand.Create(() => new LoginModel { Pseudo = Pseudo, Password = Password }, ConnectEnabled);
+            }
+            else
+            {
+                ConnectButton = null;
+            }
         }
     }
 }
