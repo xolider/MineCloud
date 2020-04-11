@@ -89,6 +89,7 @@ namespace MineCloudApp.Utils
                 var destPath = Path.Combine(FileHelper.MineCloudTemp, path.Replace(FileHelper.MinecraftSavesDirectory, "").Substring(1)) + ".zip";
                 ZipFile.CreateFromDirectory(path, destPath, CompressionLevel.Optimal, true);
                 await SendFile(destPath);
+                File.Delete(destPath);
             }
         }
 
