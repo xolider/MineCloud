@@ -11,7 +11,7 @@
         CanResize="False"
         HasSystemDecorations="False"
         WindowStartupLocation="CenterScreen"
-        FontFamily="Arial">
+        FontFamily="/Assets/Arial.ttf#Arial">
 
   <Design.DataContext>
     <vm:MainWindowViewModel/>
